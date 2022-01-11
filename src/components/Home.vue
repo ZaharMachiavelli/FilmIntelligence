@@ -6,11 +6,10 @@
       <Question :workState="1" :options="genres" :type="'genre'" :film="film" :title="'Выберите предпочитаемый жанр'" @changeValue="changeValue"/>
       <Question :workState="2" :options="relations" :type="'relation'" :film="film" :title="'Что вы хотите получить от фильма?'" @changeValue="changeValue" />
       <Question :workState="3" :options="years" :type="'year'" :film="film" :title="'Выберите десятилетие выпуска фильма'" @changeValue="changeValue" />
-      <Question :workState="4" :options="single" :type="'single'" :film="film" :title="'Как вы хотите посомтреть фильм?'" @changeValue="changeValue" />
+      <Question :workState="4" :options="single" :type="'single'" :film="film" :title="'Как вы хотите посмотреть фильм?'" @changeValue="changeValue" />
       <Actors :actors="film.actors" :workState="5" @addNew="addActor" @deleteActor="deleteActor" />
-      <div v-if="$store.state.sysState==6">
-        <Result :film="film" />
-      </div>
+      <Result :film="film" :final="true" v-if="$store.state.sysState==6" />
+      <Result :film="film" :final="false" v-if="$store.state.sysState!=6 && $store.state.sysState!=0 && $store.state.sysState!=1" />
       
  </div>
 </template>

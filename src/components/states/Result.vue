@@ -1,11 +1,11 @@
 <template>
 <div class="result">
-    <h1>Результаты</h1>
+    <h1>Результат</h1>
     <div v-if="current != null" class="film">
         <h2 class="film_previes">Вам больше всего подходит</h2>
         <img v-bind:src="current[0].image" />
         <p class="film_name">{{current[0].name}}</p>
-        <div class="argumnets">
+        <div class="argumnets" v-if="final">
             <p><strong>Почему именно этот фильм?</strong></p>
             <p v-for="(arg, index) in arguments" :key="index" class="argument">
                 {{arg}}
@@ -21,6 +21,7 @@ import {getFilms} from "@/db"
 export default {
     props: {
         film: Object,
+        final: Boolean,
     },
 
     setup() {
@@ -36,10 +37,10 @@ export default {
 
     methods: {
         getFilm(film, res) {
-            this.current = res.filter((el) => el.genre == film.genre && el.years == film.years && el.relation == film.relation && el.single == film.single && this.checkActors(el.actors, this.film.actors));
+            this.current = res.filter((el) => (film.genre!=null || el.genre == film.genre) && (film.years==null || el.years == film.years) && (film.relation== null || el.relation == film.relation) && (film.single==null || el.single == film.single) && this.checkActors(el.actors, this.film.actors));
             if (this.current.length == 0) this.current = res.filter(el => el.genre == film.genre);
             this.current = this.current.sort((prev, next) => next.mark - prev.mark);
-            this.getArguments(this.current[0]);
+            this.final && this.getArguments(this.current[0]);
         },
 
         checkActors(filmActors, choosenActors) {
