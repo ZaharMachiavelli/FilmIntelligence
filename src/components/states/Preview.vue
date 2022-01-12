@@ -8,7 +8,7 @@
    <div class="buttons">
    <my-button @click="$store.commit('setState', 1)">Продолжить</my-button>
    <my-button @click="$router.push({ name: 'Login' });">Авторизироваться как эксперт</my-button>
-   <my-button>Добавить фильм (нужна авторизация)</my-button>
+   <my-button @click="$router.push({ name: 'Settings' })">Изменить настройки (нужна авторизация)</my-button>
    </div>
    
    

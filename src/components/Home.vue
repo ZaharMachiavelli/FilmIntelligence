@@ -3,11 +3,11 @@
    
      <Preview v-if="$store.state.sysState==0" />
      <!-- <input type="radio" v-model="film.genre" value="Драма"> -->
-      <Question :workState="1" :options="genres" :type="'genre'" :film="film" :title="'Выберите предпочитаемый жанр'" @changeValue="changeValue"/>
-      <Question :workState="2" :options="relations" :type="'relation'" :film="film" :title="'Что вы хотите получить от фильма?'" @changeValue="changeValue" />
-      <Question :workState="3" :options="years" :type="'year'" :film="film" :title="'Выберите десятилетие выпуска фильма'" @changeValue="changeValue" />
-      <Question :workState="4" :options="single" :type="'single'" :film="film" :title="'Как вы хотите посмотреть фильм?'" @changeValue="changeValue" />
-      <Actors :actors="film.actors" :workState="5" @addNew="addActor" @deleteActor="deleteActor" />
+      <Question v-if="$store.state.sysState==1" :options="genres" :type="'genre'" :film="film" :title="'Выберите предпочитаемый жанр'" @changeValue="changeValue"/>
+      <Question v-if="$store.state.sysState==2" :options="relations" :type="'relation'" :film="film" :title="'Что вы хотите получить от фильма?'" @changeValue="changeValue" />
+      <Question v-if="$store.state.sysState==3" :options="years" :type="'year'" :film="film" :title="'Выберите десятилетие выпуска фильма'" @changeValue="changeValue" />
+      <Question v-if="$store.state.sysState==4" :options="single" :type="'single'" :film="film" :title="'Как вы хотите посмотреть фильм?'" @changeValue="changeValue" />
+      <Actors :actors="film.actors" v-if="$store.state.sysState==5" @addNew="addActor" @deleteActor="deleteActor" />
       <Result :film="film" :final="true" v-if="$store.state.sysState==6" />
       <Result :film="film" :final="false" v-if="$store.state.sysState!=6 && $store.state.sysState!=0 && $store.state.sysState!=1" />
       
@@ -100,7 +100,7 @@ export default {
       this.film.actors = this.film.actors.filter(el => el != value);
     }
 
-  }
+  },
 }
 </script>
 

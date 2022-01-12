@@ -10,6 +10,7 @@
             <p v-for="(arg, index) in arguments" :key="index" class="argument">
                 {{arg}}
             </p>
+            <my-button @click="$store.commit('setState', 0)">Вернуться на главную</my-button>
         </div>
     </div>
 </div>
@@ -35,12 +36,14 @@ export default {
         }
     },
 
+    mounted() {
+        console.log(this.film)
+    },
+
     methods: {
         getFilm(film, res) {
             this.current = res.filter((el) => (film.genre==null || el.genre == film.genre) && (film.years==null || el.years == film.years) && (film.relation== null || el.relation == film.relation) && (film.single==null || el.single == film.single) && this.checkActors(el.actors, this.film.actors));
             if (this.current.length == 0) this.current = res.filter(el => el.genre == film.genre);
-            console.log(film.genre)
-            console.log(this.current)
             this.current = this.current.sort((prev, next) => next.mark - prev.mark);
             this.final && this.getArguments(this.current[0]);
         },

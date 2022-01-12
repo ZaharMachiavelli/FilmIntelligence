@@ -1,5 +1,5 @@
 <template>
-    <div v-if="$store.state.sysState==workState">
+    <div>
       <h2>{{title}}</h2>
       <div class="card_grid" :class="{'upgrade': options.length < 4}">
         <div v-for="elem in options" :key="elem.id">
@@ -33,9 +33,19 @@ export default {
 
         setNewState() {
             if(this.film[this.type] != null) {
-                this.$store.state.sysState=this.workState+1
+                this.$store.commit('setState', this.$store.state.sysState+1)
             }
+            console.log(this.$store.state.sysState)
         }
+    },
+
+    mounted() {
+      console.log(this.$store.state.settings[this.type])
+      if(!this.$store.state.settings[this.type]) {
+        this.$store.commit('setState', this.$store.state.sysState+1)
+      }
+
+      console.log(this.$store.state.settings[this.type])
     }
 }
 </script>

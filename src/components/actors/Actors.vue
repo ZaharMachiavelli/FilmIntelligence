@@ -1,5 +1,5 @@
 <template>
-<div class="chooseactor" v-if="$store.state.sysState==workState">
+<div class="chooseactor">
     <h1>Введите желаемых актеров</h1>
     <div class="add">
     <input type="text" v-model="current" />
@@ -8,7 +8,7 @@
     <div v-for="(actor, index) in actors" :key="index" style="margin-bottom: 10px;">
         <Actor :name="actor" @deleteActor="removeActor" />
     </div>
-    <my-button @click="$store.state.sysState=workState+1">Завершить</my-button>
+    <my-button @click="$store.commit('setState', this.$store.state.sysState+1)">Завершить</my-button>
 </div>
 
 
@@ -30,7 +30,6 @@ export default ({
     },
     methods: {
         addActor() {
-            console.log("2")
             this.$emit('addNew', this.current);
             this.current = "";
         },
@@ -38,6 +37,12 @@ export default ({
         removeActor(value) {
             this.$emit('deleteActor', value);
         }
+    },
+
+    mounted() {
+        if(!this.$store.state.settings.actors) {
+        this.$store.commit('setState', this.$store.state.sysState+1)
+      }
     }
 })
 </script>
