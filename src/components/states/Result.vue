@@ -37,8 +37,10 @@ export default {
 
     methods: {
         getFilm(film, res) {
-            this.current = res.filter((el) => (film.genre!=null || el.genre == film.genre) && (film.years==null || el.years == film.years) && (film.relation== null || el.relation == film.relation) && (film.single==null || el.single == film.single) && this.checkActors(el.actors, this.film.actors));
+            this.current = res.filter((el) => (film.genre==null || el.genre == film.genre) && (film.years==null || el.years == film.years) && (film.relation== null || el.relation == film.relation) && (film.single==null || el.single == film.single) && this.checkActors(el.actors, this.film.actors));
             if (this.current.length == 0) this.current = res.filter(el => el.genre == film.genre);
+            console.log(film.genre)
+            console.log(this.current)
             this.current = this.current.sort((prev, next) => next.mark - prev.mark);
             this.final && this.getArguments(this.current[0]);
         },
