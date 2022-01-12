@@ -82,6 +82,11 @@ export default {
 </script>
 
 <style scoped>
+.result {
+    margin-bottom: 10px;
+}
+
+
 img {
     max-width: 305px;
     max-height: 250px;
