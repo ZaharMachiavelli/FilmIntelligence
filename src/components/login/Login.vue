@@ -1,6 +1,6 @@
 <template>
     <div class="register_form">
-        <h2>Войдите как эксперт, чтобы иметь возможность добавлять новые </h2>
+        <h2>Войдите как эксперт, чтобы иметь возможность менять настройки</h2>
         <input type="text" v-model="data.name" placeholder="Введите имя" />
         <input type="password" v-model="data.password" placeholder="Введите пароль" />
         <div>
