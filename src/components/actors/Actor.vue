@@ -32,6 +32,7 @@ button {
     border: none;
     margin-left: 10px;
     padding: 0;
+    cursor: pointer;
 }
 
 img {
