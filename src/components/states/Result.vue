@@ -57,6 +57,7 @@ export default {
                     }
                     if (j == filmActors.length - 1) {
                         response = false;
+                        counter++;
                     }
                 }
             }
