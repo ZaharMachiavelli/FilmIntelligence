@@ -58,7 +58,7 @@ export default {
         {id:1,name: "Комедия", image:borat, value: "comedy"},
         {id:2,name: "Детектив", image:knives, value: "detective"},
         {id:3,name: "Мюзикл", image:lalaland, value: "musicle"},
-        {id:4,name: "Приключения", image:lord, value: "lordrings"},
+        {id:4,name: "Приключения", image:lord, value: "travel"},
         {id:5,name: "Хоррор", image:pila, value: "horror"},
         {id:6,name: "Боевик", image:pirates, value: "fighter"},
       ],
