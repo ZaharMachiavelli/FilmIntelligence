@@ -26,7 +26,7 @@ export default createStore({
     },
 
     setSettings(state, data) {
-      console.log(state.settings[data.type], data.value)
+
       state.settings[data.type] = data.value
     },
 

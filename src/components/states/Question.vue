@@ -35,17 +35,16 @@ export default {
             if(this.film[this.type] != null) {
                 this.$store.commit('setState', this.$store.state.sysState+1)
             }
-            console.log(this.$store.state.sysState)
+
         }
     },
 
     mounted() {
-      console.log(this.$store.state.settings[this.type])
       if(!this.$store.state.settings[this.type]) {
         this.$store.commit('setState', this.$store.state.sysState+1)
       }
 
-      console.log(this.$store.state.settings[this.type])
+      
     }
 }
 </script>
