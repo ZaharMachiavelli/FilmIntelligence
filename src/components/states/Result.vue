@@ -42,7 +42,7 @@ export default {
 
     methods: {
         getFilm(film, res) {
-            this.current = res.filter((el) => (film.genre==null || el.genre == film.genre) && (film.years==null || el.years == film.years) && (film.relation== null || el.relation == film.relation) && (film.single==null || el.single == film.single) && this.checkActors(el.actors, this.film.actors));
+            this.current = res.filter((el) => (film.genre==null || el.genre == film.genre) && (this.film.actors.length == 0 || this.checkActors(el.actors, this.film.actors)) && (film.years==null || el.years == film.years) && (film.relation== null || el.relation == film.relation) && (film.single==null || el.single == film.single) );
             if (this.current.length == 0) this.current = res.filter(el => el.genre == film.genre);
             this.current = this.current.sort((prev, next) => next.mark - prev.mark);
             this.final && this.getArguments(this.current[0]);
@@ -51,8 +51,13 @@ export default {
         checkActors(filmActors, choosenActors) {
             let counter = 0;
             let response = true;
+            console.log(choosenActors[0]);
+            console.log(choosenActors.length);
+            console.log(filmActors.length);
             while(counter < choosenActors.length) {
                 for(let j=0; j<filmActors.length; j++) {
+                    console.log(filmActors[j])
+                    console.log(choosenActors[counter])
                     if(choosenActors[counter] == filmActors[j]) {
                         this.arguments.push(`В этом фильме снимается ${choosenActors[counter]}`); 
                         counter++;
