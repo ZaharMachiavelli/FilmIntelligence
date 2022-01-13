@@ -87,6 +87,16 @@ export default {
 
     mounted() {
         this.setFilms();
+    },
+
+    watch: {
+        film: {
+            handler(newVal) {
+                this.setFilms();
+            },
+            deep: true
+            
+        }
     }
     
 }
