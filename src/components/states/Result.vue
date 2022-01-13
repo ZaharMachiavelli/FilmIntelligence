@@ -51,9 +51,6 @@ export default {
         checkActors(filmActors, choosenActors) {
             let counter = 0;
             let response = true;
-            console.log(choosenActors[0]);
-            console.log(choosenActors.length);
-            console.log(filmActors.length);
             while(counter < choosenActors.length) {
                 for(let j=0; j<filmActors.length; j++) {
                     console.log(filmActors[j])
